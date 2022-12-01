@@ -1,0 +1,18 @@
+def solution(citations):
+    count = max(citations)
+    answer = []
+    for c in range(0, count+1) :
+        up = 0
+        down = 0
+        for citation in citations :
+            if c >= citation :
+                up +=1
+            elif c <= citation :
+                down += 1
+        print(up)
+        print(down)
+        if up == down :
+            answer.append(c)
+    return max(answer)
+
+solution([3,0,6,1,5])
