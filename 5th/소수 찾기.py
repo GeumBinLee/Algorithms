@@ -36,16 +36,10 @@ def is_prime_number(num):
 def solution(numbers) :
     # 종이에 적힌 숫자 떼어내기
     number_list = list(map(int, numbers))
-    number_list.sort(reverse=True)
-    
-    # 숫자 조합 중 가장 큰 수 구하기
-    max_num = ""
-    for x in number_list :
-        max_num += str(x)
     
     # 한자릿수 조합부터 가장 큰 수와 동일한 자릿수까지 모든 조합 구하기
     permute_list = []
-    for i in range(1, len(max_num)+1) :
+    for i in range(1, len(number_list)+1) :
         permute = list(permutations(number_list, i))
         permute_list += permute
         
@@ -62,9 +56,28 @@ def solution(numbers) :
     for i in permute_numbers :
         if is_prime_number(i) :
             prime_set.append(i)
-    prime_set = set(prime_set)
     
-    return len(prime_set)
-    
-solution("011")
+    return len(set(prime_set))
 
+# 다른 풀이
+def solution2(numbers) :
+    answer = []
+    
+    # numbers 분리하기
+    nums = [n for n in numbers]
+    
+    # 분리된 숫자들의 순열 만들기
+    per = []
+    for i in range(1, len(numbers)+1) :
+        per += list(permutations(nums, i))
+    
+    # 순열로 만들어진 수를 하나의 수로 만들기
+    new_nums = [int(("").join(p)) for p in per]
+    
+    # 모든 ㅑnt형 숫자에 대해 소수인지 판별
+    for n in new_nums :
+        # 소수일 경우 answer 배열에 추가
+        if is_prime_number(n) :
+            answer.append(n)
+    
+    return len(set(answer))
