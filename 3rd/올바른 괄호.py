@@ -19,6 +19,17 @@ def solution(s):
         return True
     return False
     
-    
-s = "()())"
-solution(s)
+# 다른 풀이
+def solution(s) :
+    stack = []
+    for c in s :
+        if c == "(" :
+            stack.append(c)
+        else : # ) 라면
+            if stack != [] : # 쌍이 있다면
+                stack.pop()
+            else :
+                return False
+    if stack != [] :
+        return False
+    return True
