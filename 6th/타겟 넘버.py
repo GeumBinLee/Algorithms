@@ -15,3 +15,15 @@ def solution(numbers, target):
     return answer
 
 solution([1,1,1,1,1], 3)
+
+# 다른 풀이
+def recursive(numbers, sum, target) :
+    if numbers == [] :
+        if sum == target :
+            return 1
+        else :
+            return 0
+    return recursive(numbers[1:], sum + numbers[0], target) + recursive(numbers[1:], sum - numbers[0], target)
+
+def solution2(numbers, target) :
+    return recursive(numbers, 0, target)
