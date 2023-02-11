@@ -32,8 +32,6 @@ from collections import deque
 #     answer = sum(truck_weights) + bridge_length
 #     return answer
 
-from collections import deque
-
 def solution(bridge_length, weight, truck_weights):
     answer = 0
     truck_bridge_deque = deque(bridge_length * [0])
