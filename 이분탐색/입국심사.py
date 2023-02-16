@@ -8,6 +8,7 @@ def solution(n, times):
     # 가장 긴 심사시간이 소요되는 심사관에게 n 명 모두 심사받는 경우이다.
     left, right = 1, max(times) * n
     while left <= right:
+        print(left, right)
         mid = (left+ right) // 2
         people = 0
         for time in times:
@@ -17,12 +18,14 @@ def solution(n, times):
             if people >= n:
                 break
         
-        # 심사한 사람의 수가 심사 받아야할 사람의 수(n)보다 많거나 같은 경우
+        # 심사 가능한 사람의 수가 심사 받아야할 사람의 수(n)보다 많거나 같은 경우, 즉 시간이 남는 경우
         if people >= n:
             answer = mid
             right = mid - 1
-        # 심사한 사람의 수가 심사 받아야할 사람의 수(n)보다 적은 경우
+        # 심사 가능한 사람의 수가 심사 받아야할 사람의 수(n)보다 적은 경우, 즉 시간 내에 심사를 다 못할 경우
         elif people < n:
             left = mid + 1
             
     return answer
+
+solution(6, [7, 10])

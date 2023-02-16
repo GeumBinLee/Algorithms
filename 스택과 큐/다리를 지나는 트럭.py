@@ -1,4 +1,3 @@
-from collections import deque
 # def solution(bridge_length, weight, truck_weights):
 #     answer = 1
     # if len(truck_weights) == 1 :
@@ -32,18 +31,25 @@ from collections import deque
 #     answer = sum(truck_weights) + bridge_length
 #     return answer
 
+from collections import deque
 def solution(bridge_length, weight, truck_weights):
     answer = 0
-    truck_bridge_deque = deque(bridge_length * [0])
-    truck_weights_deque = deque(truck_weights)
-    while len(truck_bridge_deque):
-        answer += 1
-        truck_bridge_deque.popleft()
-        if truck_weights_deque:
-            if sum(truck_bridge_deque) + truck_weights_deque[0] <= weight:
-                truck_bridge_deque.append(truck_weights_deque.popleft())
+    d = deque([0] * bridge_length)
+    truck_weights = deque(truck_weights)
+    total_weight = 0
+
+    while d:
+        total_weight -= d.popleft()
+
+        if truck_weights:
+            if total_weight + truck_weights[0] <= weight:
+                w = truck_weights.popleft()
+                d.append(w)
+                total_weight += w
             else:
-                truck_bridge_deque.append(0)
+                d.append(0)
+        answer += 1
+
     return answer
 
 solution(100, 100, [10,10,10,10,10,10,10,10,10,10])
