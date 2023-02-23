@@ -1,0 +1,11 @@
+# 내 풀이 1
+def solution(my_string):
+    string = sorted([x.lower() for x in my_string])
+    answer = ""
+    for s in string :
+        answer += s
+    return answer
+
+# 내 풀이 2
+def solution(my_string):
+    return "".join(sorted(my_string.lower()))
