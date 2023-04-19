@@ -7,3 +7,9 @@ def solution1(balls, share):
     return len(combi_list)
 
 solution1(3, 2)
+
+# 모듈만 바꿈
+import math
+
+def solution(balls, share):
+    return math.comb(balls, share)
